@@ -4,8 +4,8 @@ from django.template import Library
 
 register = Library()
 
-@register.inclusion_tag ('geonetworkviewer.html', takes_context=True)
-def geonetworkviewer(context, viewerstructure):
+@register.inclusion_tag ('mapviewer.html', takes_context=True)
+def mapviewer(context, viewerstructure):
 
     # some keys may be absent - set the defaults values here
     if 'metrics' not in viewerstructure:
@@ -29,11 +29,9 @@ def geonetworkviewer(context, viewerstructure):
     if 'ganglist' not in viewerstructure:
         viewerstructure['ganglist'] = []
 
-
     return {'STATIC_URL': context['STATIC_URL'], 'editlink': context['editlink'], 'browser': context['browser'],
-            'jsonGraph': viewerstructure['jsonGraph'], 'metrics': viewerstructure['metrics'],
-            'startup': viewerstructure['startup'], 'viewerid': viewerstructure['uniqueid'],
-            'maptype': viewerstructure['maptype'], 'zoomtoextent': viewerstructure['zoomtoextent'],
+            'geojson': viewerstructure['geojson'], 'metrics': viewerstructure['metrics'], 'startup': viewerstructure['startup'],
+            'viewerid': viewerstructure['uniqueid'], 'maptype': viewerstructure['maptype'], 'zoomtoextent': viewerstructure['zoomtoextent'],
             'epicentre': viewerstructure['epicentre'], 'classname': viewerstructure['classname'], 'markershape': viewerstructure['markershape'],
             'markersize': viewerstructure['markersize'], 'linkweight': viewerstructure['linkweight'], 'ganglist': viewerstructure['ganglist'], }
 
